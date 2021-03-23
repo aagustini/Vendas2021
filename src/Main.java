@@ -3,7 +3,7 @@ public class Main {
     // tema de casa para 15/03
     //  - completar a classe Venda
     //  - criar duas classes de cadatro: clientes e produtos
-    //  - testar....
+    //  - testar.... SEMPRE!!!
 
 
     public static void main(String[] args) {
