@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Main {
 
     // tema de casa para 15/03
@@ -5,8 +7,122 @@ public class Main {
     //  - criar duas classes de cadatro: clientes e produtos
     //  - testar.... SEMPRE!!!
 
-
     public static void main(String[] args) {
+
+        Produto p1;
+
+        p1 = new Produto(45, "Caneta Bic Marking", 4.50);
+
+        p1.setPreco(5);
+
+        System.out.println("Nome: " + p1.getNome());
+        System.out.println("Preço: " + p1.getPreco());
+        System.out.println(p1.toString());
+
+
+
+        ProdAlcoolico.setTaxaAlcoolico(25);
+        System.out.println("Taxa de bebidas alcoolicas: " + ProdAlcoolico.getTaxaAlcoolico());
+
+
+        //CadastroClientes cadCli = new CadastroClientes();
+        CadastroClientes cadCli = CadastroClientes.getInstance();
+        cadCli.inserir(new ClientePF(717, "Sr. Smith", "43434"));
+        cadCli.inserir(new ClientePJ(913, "Sra. Smith", "23123/0001-8"));
+
+        Cliente c = new ClientePF(123, "Huguinho", "12121212");
+        cadCli.inserir( c );
+
+        Cliente pf;
+
+        pf = new ClientePF(981,"Zezinho", "123.456.789.01");
+        cadCli.inserir(pf);
+
+        Cliente estu;
+        estu = new Estudante(786, "Luizinho", "111.222.333-55",
+                "191003456", "PUCRS");
+        cadCli.inserir(estu);
+
+        System.out.println(cadCli.toString());
+
+
+        //CadastroProdutos cadProd = new CadastroProdutos();
+        CadastroProdutos cadProd = CadastroProdutos.getInstance();
+        cadProd.inserir(21, "Lápis 1HB", 1.50);
+        cadProd.inserir(22, "Caneta vermelha", 3);
+        cadProd.inserir(23, "Recarga Caneta Pilot", 10);
+
+
+        ProdutoEE pee;
+
+        pee = new ProdutoEE(67, "Pendrive 1Tb", 10, 180);
+
+        //ProdutoEE prodAux = (ProdutoEE) pee;
+        //if (prodAux != null) {
+        // if ( pee instanceOf ProdutoEE)
+        //    System.out.println(((ProdutoEE)pee).getGarantia());
+        //}
+
+
+
+        //System.out.println(pee.getGarantia());
+
+        cadProd.inserir(pee);
+
+        Produto pa = new ProdAlcoolico(77, "Cachaça Boa Sorte", 10);
+        cadProd.inserir(pa);
+
+        System.out.println(cadProd.toString());
+
+
+        Venda venda1 = new Venda(cadCli.pesquisar(786));
+        Produto prod = cadProd.pesquisar(22);
+
+        if (prod != null) venda1.inserir(3, prod);
+        //prod = cadProd.pesquisar(67);
+        //if (prod != null) venda1.inserir(prod);
+
+        prod = cadProd.pesquisar(21);
+        if (prod != null) venda1.inserir(prod);
+
+        prod = cadProd.pesquisar(67);
+        if (prod != null) venda1.inserir(2,  prod);
+
+        prod = cadProd.pesquisar(77);
+        if (prod != null) venda1.inserir(prod);
+        //System.out.println("Total da venda1: "+venda1.valorTotal());
+
+        System.out.println(venda1.getNotaFiscal());
+
+
+        ProdutoEE prodEE;
+
+        prodEE = new ProdutoEE(67, "Super Note 7.0", 5000, 365);
+
+        System.out.println(prodEE.getGarantia());
+
+
+
+
+
+        // exemplo de uso da classe LocalDate
+        /*
+        LocalDate hoje = LocalDate.now();
+
+        System.out.println("Hoje: "+ hoje);
+
+        LocalDate dia;
+
+        dia = LocalDate.of(1999, 12,18);
+        System.out.println("Aniversario do Vitor: "+ dia);
+        System.out.println("nasceu no dia: "+ dia.getDayOfWeek());
+*/
+
+    }
+
+
+
+    public static void main0(String[] args) {
         Cliente c1 = new Cliente(123, "Sr. Smith");
         Cliente c2 = new Cliente(321, "John Doe");
 
@@ -88,7 +204,7 @@ public class Main {
 
         System.out.println("\nPróxima venda será a de número: " + Venda.getProximaVenda());
 
-*/
+
 
         String nome1 = "joao";
         String nome2 = "joao";
@@ -96,6 +212,7 @@ public class Main {
         String nome3 = nome1;
 
 
-
+*/
     }
+
 }

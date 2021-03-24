@@ -1,7 +1,9 @@
-                    // é um tipo de...
+import java.time.LocalDate;
+
+// é um tipo de...
 public class ProdutoEE    extends      Produto {
 
-    private int diasValidade;
+    private int diasGarantia;
 
     public ProdutoEE(int umCodigo, String umNome, double umPreco, int dias) {
         //codigo = umCodigo;
@@ -9,18 +11,25 @@ public class ProdutoEE    extends      Produto {
         //preco = umPreco;
         super(umCodigo, umNome, umPreco);
 
-        this.diasValidade = dias;
+        this.diasGarantia = dias;
     }
 
-    public int getDiasValidade() {
-        return diasValidade;
+    public int getDiasGarantia() {
+        return diasGarantia;
     }
 
+    public String getGarantia() {
+        LocalDate garntia = LocalDate.now().plusDays(diasGarantia);
+
+        return "\n- - - - - - - - - - - - - - - \n" + getNome()
+                + " - Garantia de " + diasGarantia
+                + " dias, vencimento em "+garntia;
+                        }
     @Override
     public String toString() {
         return "ProdutoEE{" +
                super.toString() +
-                ", dias validade='" + getDiasValidade() + '\'' +
+                ", dias validade='" + getDiasGarantia() + '\'' +
                 '}';
     }
 }
