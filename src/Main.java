@@ -26,6 +26,10 @@ public class Main {
 
 
         //CadastroClientes cadCli = new CadastroClientes();
+
+       // Cliente c = new Cliente(123, "Huguinho");
+
+
         CadastroClientes cadCli = CadastroClientes.getInstance();
         cadCli.inserir(new ClientePF(717, "Sr. Smith", "43434"));
         cadCli.inserir(new ClientePJ(913, "Sra. Smith", "23123/0001-8"));
@@ -57,50 +61,69 @@ public class Main {
 
         pee = new ProdutoEE(67, "Pendrive 1Tb", 10, 180);
 
-        //ProdutoEE prodAux = (ProdutoEE) pee;
-        //if (prodAux != null) {
-        // if ( pee instanceOf ProdutoEE)
-        //    System.out.println(((ProdutoEE)pee).getGarantia());
-        //}
 
+        // static binding
+        //    - tipo estático da variável,
+        //    - só tenho acesso (na compilação) aos métodos da classe estática
+        Produto prod;
 
+        //     dynamic binding
+        //         - tipo durante a execução (new)
+        //         - excuta métodos a partir do tipo dinâmico
+        //           p.e. excuta toString do ProdutoEE e não do Produto
+        // prod = new ProdutoEE(67, "Super Note 7.0", 5000, 365);
+        prod = new ProdutoEE(167, "Super note 7.0", 5000, 365);
 
-        //System.out.println(pee.getGarantia());
+        // alternativa 1
+        if (prod instanceof ProdutoEE) {
+            ProdutoEE prodEE = (ProdutoEE) prod;   // (casting)
+            System.out.println(prodEE.getNome());
+            System.out.println(prodEE.getGarantia());
+        } else {
+            System.out.println("\nnão tem garantia...\n");
+        }
+
 
         cadProd.inserir(pee);
+        cadProd.inserir(prod);
 
         Produto pa = new ProdAlcoolico(77, "Cachaça Boa Sorte", 10);
         cadProd.inserir(pa);
 
         System.out.println(cadProd.toString());
 
+        Cliente cli = cadCli.pesquisar(786);
 
-        Venda venda1 = new Venda(cadCli.pesquisar(786));
-        Produto prod = cadProd.pesquisar(22);
+        // e se... eu quiser pesquisar o cliente pelo seu CPF ou CNPJ?
+        Cliente novoCli = cadCli.pesquisar("111.222.333-55");
 
-        if (prod != null) venda1.inserir(3, prod);
-        //prod = cadProd.pesquisar(67);
-        //if (prod != null) venda1.inserir(prod);
+        if (cli == null)
+            System.out.println("Cliente inválido. Erro");
+        else {
 
-        prod = cadProd.pesquisar(21);
-        if (prod != null) venda1.inserir(prod);
+            Venda venda1 = new Venda(novoCli);
+             prod = cadProd.pesquisar(22);
 
-        prod = cadProd.pesquisar(67);
-        if (prod != null) venda1.inserir(2,  prod);
+            if (prod != null) venda1.inserir(3, prod);
+            //prod = cadProd.pesquisar(67);
+            //if (prod != null) venda1.inserir(prod);
 
-        prod = cadProd.pesquisar(77);
-        if (prod != null) venda1.inserir(prod);
-        //System.out.println("Total da venda1: "+venda1.valorTotal());
+            prod = cadProd.pesquisar(21);
+            if (prod != null) venda1.inserir(prod);
 
-        System.out.println(venda1.getNotaFiscal());
+            prod = cadProd.pesquisar(67);
+            if (prod != null) venda1.inserir(2, prod);
 
+            prod = cadProd.pesquisar(77);
+            if (prod != null) venda1.inserir(prod);
+            //System.out.println("Total da venda1: "+venda1.valorTotal());
 
-        ProdutoEE prodEE;
+            prod = cadProd.pesquisar(167);
+            if (prod != null) venda1.inserir(1, prod);
 
-        prodEE = new ProdutoEE(67, "Super Note 7.0", 5000, 365);
+            System.out.println(venda1.getNotaFiscal());
 
-        System.out.println(prodEE.getGarantia());
-
+        }
 
 
 
@@ -123,13 +146,13 @@ public class Main {
 
 
     public static void main0(String[] args) {
-        Cliente c1 = new Cliente(123, "Sr. Smith");
-        Cliente c2 = new Cliente(321, "John Doe");
+        Cliente c1 = new ClientePF(123, "Sr. Smith", "11-11");
+        Cliente c2 = new ClientePJ(321, "John Doe", "1.1.1");
 
         CadastroClientes cadCli = CadastroClientes.getInstance();
         cadCli.inserir(c1);
         cadCli.inserir(c2);
-        cadCli.inserir(127, "Tio Patinhas");
+        //cadCli.inserir(127, "Tio Patinhas");
 
         System.out.println(cadCli);
 

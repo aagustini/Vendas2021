@@ -1,4 +1,10 @@
-public class Cliente {
+
+// classe abstrata
+//    - generalizei e chegei a uma classe que não faz sentido para a aplicação ser instanciada
+//    - ou seja, esta classe serve apenas como repositório de atributos e métodos comuns das subclasses
+//    - efeito -> não posso dar "new Cliente"
+
+public abstract class Cliente {
     private int codigo;
     private String nome;
 
@@ -23,5 +29,17 @@ public class Cliente {
                 '}';*/
         return String.format("(%d) \t %s",codigo, nome);
     }
+
+    //public String getID() {
+    //    // - retorna cpf se pf
+    //    // - retorna cnpf se pj
+    //    return "";
+    //}
+
+    // método abstract
+    //    - visível para a ligação etática (compilação)
+    //    - na classe cliente eu não "sei" o que devo devolver
+    //    - mas TODA subclasse de Cliente deve implementar seu método getID
+
 }
 

@@ -51,6 +51,7 @@ public class Venda {
 
     public String getNotaFiscal() {
         StringBuilder rel = new StringBuilder("\nCupom de Venda \t\t NF: ");
+        StringBuilder garantias = new StringBuilder();
         rel.append(nroVenda);
         rel.append("\nComprador: ");
         rel.append(cliente.toString());
@@ -59,12 +60,19 @@ public class Venda {
         for (ItemVenda item: itens ) {
             rel.append(item.toString());
             rel.append("\n");
+            if (item.getProd() instanceof ProdutoEE) {
+                ProdutoEE pee = (ProdutoEE) item.getProd();
+                garantias.append(pee.getGarantia());
+                garantias.append("\n");
+            }
         }
 
         rel.append("\n");
         rel.append("Total: ");
         rel.append(this.valorTotal());
         rel.append("\n------------------------------------------\n");
+
+        rel.append(garantias);
 
         return rel.toString();
     }
