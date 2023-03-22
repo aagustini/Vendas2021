@@ -40,6 +40,8 @@ public abstract class Cliente {
     //    - visível para a ligação etática (compilação)
     //    - na classe cliente eu não "sei" o que devo devolver
     //    - mas TODA subclasse de Cliente deve implementar seu método getID
+    
+    public abstract String getID();
 
 }
 
